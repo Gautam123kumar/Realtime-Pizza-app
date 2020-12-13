@@ -6,6 +6,10 @@
     - Dev dependancies
         -nodemon
 [+] Create Epress server - Create a server.js file
+[+] Git setup and first commit
+[+] Install Laravel Mix
+     - set js and scss
+[.] Install tailwind css 
 [.] Create Home Page using Html and Css
     - include tailwind Css
 [.] Create Catr Page
