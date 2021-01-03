@@ -38,3 +38,11 @@
 [.] Create Order controller and link it in server.js
 [.] Create Orders view with table for customer and admin
 [.] Create Orders single page with status
+[.] Place order functionality
+[.] show order on admon order page
+[.] order tracker
+    - dependancies moment
+[.] Socket Connection
+    -dependancies Socket.io
+[.] Build Project for deployment
+[.] Deploy project on live server
