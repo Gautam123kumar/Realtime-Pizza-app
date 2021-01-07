@@ -1,6 +1,7 @@
+import axios from 'axios'
+import moment from 'moment'
 
-
-function initAdmin(){
+export function initAdmin(){
     const orderTableBody = document.querySelector('#orderTableBody')
     
     let orders = []
@@ -16,7 +17,7 @@ function initAdmin(){
         markup = generateMarkup(orders)
         orderTableBody.innerHTML = markup
     }).catch(err=>{
-        console,log(err)
+        console.log(err)
     })
 
     function renderItems(items) {
@@ -79,4 +80,3 @@ function initAdmin(){
         }).join('')
     }
 }
-module.exports = initAdmin

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import Noty from 'noty'
 import {initAdmin} from './admin'
+import moment from 'moment'
 
 let addToCart = document.querySelectorAll('.add-to-cart')
 let cartCounter = document.querySelector('#cartCounter')
@@ -45,3 +46,53 @@ if(alertMsg) {
 }
 
 initAdmin()
+
+//change order status
+
+let statuses = document.querySelectorAll('.status_line');
+//console.log(statuses)
+let hidderInput = document.querySelector('#hidderInput');
+let order = hidderInput ? hidderInput.value:null
+
+order =JSON.parse(order)
+console.log(order)
+function updateStatus(order){
+    let stepCompleted = true;
+    statuses.forEach((status)=>{
+        let dataProp = status.dataset.status
+        if(stepCompleted){
+            status.classList.add('step-completed')
+            //console.log(status)
+        }
+        if(dataProp == order.status){
+            stepCompleted=false
+            if(status.nextElementSibling){
+                status.nextElementSibling.classList.add('current')
+            }
+        }
+    })
+}
+
+
+updateStatus(order);
+
+//socket:
+let socket = io();
+//join
+if(order){
+    socket.emit('join',`order_${order._id}`)
+}
+
+socket.on('orderUpdated',(data)=>{
+    const updatedOrder = { ...order }
+    updatedOrder.updatedAt = moment().format()
+    updatedOrder.status = data.status
+    updateStatus(updatedOrder)
+    new Noty({
+        type:'success',
+        timeout : 1000,
+        text:'Order updated',
+        progressBar:false,
+    }).show();
+})
+
