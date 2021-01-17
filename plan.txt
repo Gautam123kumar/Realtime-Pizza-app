@@ -40,10 +40,10 @@
 [+] Place order functionality
 [+] show order on admon order page
 [+] change order status
-[.] Create Orders single page with status
-[.] order tracker
+[+] Create Orders single page with status
+[+] order tracker
     - dependancies moment
-[.] Socket Connection
+[+] Socket Connection
     -dependancies Socket.io
 [.] Build Project for deployment
 [.] Deploy project on live server
