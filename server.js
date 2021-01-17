@@ -87,12 +87,17 @@ const io = require('socket.io')(server)
 
 io.on('connection',(socket)=>{
     //join 
+    // console.log(socket.id)
      socket.on('join',(orderId)=>{
-         console.log(orderId)
+         //console.log(orderId)
          socket.join(orderId)
      })
 })
 
 eventEmitter.on('orderUpdated',(data)=>{
     io.to(`order_${data.id}`).emit('orderUpdated',data)
+})
+
+eventEmitter.on('orderPlaced',()=>{
+    io.to('adminRoom').emit('orderPlaced',data)
 })
